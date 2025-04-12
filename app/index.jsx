@@ -1,7 +1,12 @@
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 import postItImg from "../assets/images/post-it.png";
 
+
 const HomeScreen = () => {
+
+  const router = useRouter();
+  
   return (
     <View
       style={styles.container}
@@ -9,6 +14,15 @@ const HomeScreen = () => {
       <Image source={ postItImg }  style={styles.image}/>
       <Text style={styles.title}>Welcome to Mikord notes App</Text>
       <Text style={styles.subtitle}>Keep your thoughts in check!</Text>
+
+      <TouchableOpacity
+        onPress={() => {
+          router.push("/notes");
+        }}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Get Started</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -38,6 +52,17 @@ const styles = StyleSheet.create({
     color: "#666",
     textAlign: "center",
     marginBottom: 20
+  },
+  button: {
+    backgroundColor: "#007bff",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
