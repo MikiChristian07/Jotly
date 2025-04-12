@@ -9,6 +9,8 @@ import {
     StyleSheet 
 } from "react-native";
 
+import NoteList from "@/components/NoteList";
+
 const NoteScreen = () => {
 
     const [notes, setNotes] = useState([
@@ -40,16 +42,9 @@ const NoteScreen = () => {
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={notes}
-                keyExtractor={(item) => item.id.toString()} // Convert id to string
-                renderItem={({ item }) => (
-                    <View style={styles.noteItem}>
-                        <Text style={styles.noteTitle}>{item.title}</Text>
-                        <Text style={styles.noteContent}>{item.content}</Text>
-                    </View>
-                )}
-            />
+
+            {/* Note List */}
+            <NoteList notes={notes} />
 
             <TouchableOpacity style={styles.addButton} onPress={() => setModalVisible(true)}>
                 <Text style={styles.addButtonText}>+ Add Note</Text>
@@ -106,29 +101,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
          // Fixed invalid hex color
-    },
-    noteItem: {
-        backgroundColor: "#fff",
-        padding: 20,
-        marginVertical: 10,
-        borderRadius: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    noteTitle: {
-        fontSize: 18,
-        fontWeight: "bold",
-        marginBottom: 5,
-    },
-    noteContent: {
-        fontSize: 16,
-        color: "#6c757d",
     },
     addButton: {
         backgroundColor: "#007bff",
